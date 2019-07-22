@@ -25,7 +25,11 @@ class HomePage(webapp2.RequestHandler):
         self.response.headers['Content-Type'] = 'text/html'
         self.response.write(template.render(data))
 
-
+class AboutPage(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('templates/aboutpage.html')
+        self.response.headers['Content-Type'] = 'text/html'
+        self.response.write(template.render())
 #class RecipePage(webapp2.RequestHandler):
     #def get(self):
         #template = JINJA_ENVIRONMENT.get_template('templates/homepage.html'
@@ -36,6 +40,7 @@ class HomePage(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', HomePage),
+    ('/about', AboutPage)
     #('/fridge', FridgePage),
     #'/recipe', RecipePage),
     #('/shopping_list', ShoppingListPage)

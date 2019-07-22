@@ -5,7 +5,23 @@
     <title></title>
   </head>
   <body>
-    <h2> <a href=/about >About</a></h2>
-    "My Fridge was created for "
+    <table bgcolor="#ff9900" width="1400" style="font-family:Georgia, Garamond, Serif;color:black;font-style:italic;">
+      <th><h2><a href=/fridge ></a></h2>
+              {% if user %}
+              <h1>User is {{user.email()}}</h1>
+              <h2><a href="{{logout_url}}">Logout</a></h2>
+              {% else %}
+              <h2><a href="{{login_url}}"><center>Login</center></a></h2>
+              {% endif %} <th>
+    <th><h2> <a href=/fridge >Fridge</a></h2></th>
+    <th><h2> <a href=/shopping_list >Shopping List</a></h2></th>
+    <th><h2> <a href=/recipe >Recipes</a></h2><th>
+    <th><h2> <a href=/about >About</a></h2></th>
+
+    </table>
+    <h2> <center>About</center></h2>
+      <h4><center>My Fridge was created for everyday grocery shoppers like you!!!
+        My Fridge was created to be simple and helpful.
+        To get the best out of the My Fridge, every time you get groceries as soon as you get home list the groceries in the My Fridge app to get the most out of the apps features.</h4></center>
   </body>
 </html>
