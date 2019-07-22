@@ -9,7 +9,6 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
-
 class HomePage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
