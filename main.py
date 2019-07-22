@@ -6,7 +6,14 @@ import jinja2
 import webapp2
 
 from google.appengine.api import users
-
+# import unirest
+# response = unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/479101/information",
+#  headers={
+#    "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+#    "X-RapidAPI-Key": "6b47611c55msh1be60a217eb3ca8p152ba2jsn2181feb853cb"
+#  }
+# )
+# print (response.body["sourceName"])
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
