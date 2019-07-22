@@ -27,10 +27,17 @@ class HomePage(webapp2.RequestHandler):
 
 
 
+#class RecipePage(webapp2.RequestHandler):
+    #def get(self):
+        #template = JINJA_ENVIRONMENT.get_template('templates/homepage.html'
+#class ShoppingListPage(webapp2.RequestHandler):
+#def get(self):
+    #    template = JINJA_ENVIRONMENT.get_template('templates/homepage.html'
 
 
 app = webapp2.WSGIApplication([
     ('/', HomePage),
     #('/fridge', FridgePage),
-    #('/recipe', RecipePage)
+    #'/recipe', RecipePage),
+    #('/shopping_list', ShoppingListPage)
 ], debug=True)
