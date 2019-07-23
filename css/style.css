@@ -13,6 +13,14 @@ a {
   font-family: cursive;
 }
 
+.fridge_header{
+  font-family: cursive;
+  font-size: 55px;
+  color: #ff9900;
+}
+
+
+
 .title-glow:hover, .title-glow:focus, .title-glow:active {
 
    -webkit-stroke-width: 5.3px;
