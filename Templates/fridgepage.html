@@ -11,7 +11,7 @@
     <table bgcolor="#ff9900" width="1400" style="font-family:Georgia, Garamond, Serif;color:black;font-style:italic;">
       <th><h2><a href=/fridge ></a></h2>
               {% if user %}
-              
+
               <h2><a href="{{logout_url}}">Logout</a></h2>
               {% else %}
               <h2><a href="{{login_url}}"><center>Login</center></a></h2>
@@ -27,6 +27,79 @@
 
     <!-- <a href=/fridge ></a> -->
     </div>
+
+<form method="post">
+
+        <h4>Meats</h4>
+        <input type="checkbox" name="meat_name" value="bacon">Bacon<br>
+        <input type="checkbox" name="meat_name" value="sausage">Sausage<br>
+        <input type="checkbox" name="meat_name" value="turkey">Turkey<br>
+        <input type="checkbox" name="meat_name" value="chicken">Chicken<br>
+        <input type="checkbox" name="meat_name" value="steak">Steak<br>
+        <input type="checkbox" name="meat_name" value="ground beef">Ground Beef<br>
+
+        <br>
+        <input type="submit" name="" value="Submit" />
+</form>
+<form method="post" action="/new_fruits">
+
+        <h4>Fruits</h4>
+        <input type="checkbox" name="fruit_name" value="strawberries">Strawberries<br>
+        <input type="checkbox" name="fruit_name" value="bananas">Bananas<br>
+        <input type="checkbox" name="fruit_name" value="mangos">Mangos<br>
+        <input type="checkbox" name="fruit_name" value="pineapples">Pineapples<br>
+        <input type="checkbox" name="fruit_name" value="apples">Apples<br>
+        <input type="checkbox" name="fruit_name" value="blueberries">Blueberries<br>
+
+        <br>
+        <input type="submit" name="" value="Submit" />
+</form>
+<form method="post" action="/new_pantries">
+
+        <h4>Pantry</h4>
+        <input type="checkbox" name="pantry_name" value="flour">Flour<br>
+        <input type="checkbox" name="pantry_name" value="sugar">Sugar<br>
+        <input type="checkbox" name="pantry_name" value="baking soda">Baking Soda<br>
+        <input type="checkbox" name="pantry_name" value="baking powder">Baking Powder<br>
+        <br>
+        <input type="submit" name="" value="Submit" />
+</form>
+<h1>Items in Fridge</h1>
+<form class="" action="/delete_food" method="post">
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Delete?</th>
+    </tr>
+    {% for each_meat in meats %}
+    <tr>
+      <td>{{each_meat.name}}</td>
+
+      <td><input type="checkbox" name="to_delete" value="{{each_meat.key.urlsafe()}}"></td>
+    </tr>
+    {% endfor %}
+    </table>
+
+    <table>
+
+    {% for each_fruit in fruits %}
+    <tr>
+      <td>{{each_fruit.name}}</td>
+      <td><input type="checkbox" name="to_delete" value="{{each_fruit.key.urlsafe()}}"></td>
+    </tr>
+    {% endfor %}
+  </table>
+  <table>
+
+  {% for each_pantry in pantries %}
+  <tr>
+    <td>{{each_pantry.name}}</td>
+    <td><input type="checkbox" name="to_delete" value="{{each_pantry.key.urlsafe()}}"></td>
+  </tr>
+  {% endfor %}
+</table>
+  <input type="submit" name="" value="Delete Selected">
+</form>
 
   </body>
 </html>
