@@ -4,6 +4,9 @@ from google.appengine.ext import ndb
 
 import jinja2
 import webapp2
+import api_functions
+
+
 
 from google.appengine.api import users
 
@@ -19,13 +22,10 @@ def root_parent():
     Allows for strong consistency at the cost of scalability.'''
     return ndb.Key('Parent', 'default_parent')
 
-class Meat(ndb.Model):
+class Food(ndb.Model):
 
     name = ndb.StringProperty()
-
-class Fruit(ndb.Model):
-
-    name = ndb.StringProperty()
+    user = ndb.UserProperty()
 
 class HomePage(webapp2.RequestHandler):
     def get(self):
@@ -36,6 +36,7 @@ class HomePage(webapp2.RequestHandler):
           'login_url': users.create_login_url('/'),
           'logout_url': users.create_logout_url(self.request.uri),
         }
+
         self.response.headers['Content-Type'] = 'text/html'
         self.response.write(template.render(data))
 
@@ -59,16 +60,18 @@ class FridgePage(webapp2.RequestHandler):
           'user': user,
           'login_url': users.create_login_url('/'),
           'logout_url': users.create_logout_url(self.request.uri),
-            'meats': Meat.query(ancestor=root_parent()).fetch(),
-            'fruits': Fruit.query(ancestor=root_parent()).fetch(),
+            'food': Food.query(Food.user==user,ancestor=root_parent()).fetch(),
+            # 'fruits': Fruit.query(Fruit.user==user,ancestor=root_parent()).fetch(),
+            # 'pantries': Pantry.query(Pantry.user==user,ancestor=root_parent()).fetch(),
         }
         self.response.headers['Content-Type'] = 'text/html'
         self.response.write(template.render(data))
     def post(self):
-        each_meat = Meat(parent=root_parent())
-        each_meat.name = self.request.get('meat_name')
+        each_food = Food(parent=root_parent())
+        each_food.name = self.request.get('food_name')
+        each_food.user = users.get_current_user()
 
-        each_meat.put()
+        each_food.put()
             # redirect to '/' so that the get() version of this handler will run
             # and show the list of dogs.
         self.redirect('/fridge')
@@ -97,22 +100,7 @@ class RecipePage(webapp2.RequestHandler):
         self.response.headers['Content-Type'] = 'text/html'
         self.response.write(template.render(data))
 
-class NewFruits(webapp2.RequestHandler):
-    def post(self):
-        new_fruit = Fruit(parent=root_parent())
-        new_fruit.name = self.request.get('fruit_name')
-        new_fruit.put()
-        # redirect to '/' so that the get() version of this handler will run
-        # and show the list of dogs.
-        self.redirect('/fridge')
-class NewPantries(webapp2.RequestHandler):
-    def post(self):
-        new_pantry = Fruit(parent=root_parent())
-        new_pantry.name = self.request.get('pantry_name')
-        new_pantry.put()
-        # redirect to '/' so that the get() version of this handler will run
-        # and show the list of dogs.
-        self.redirect('/fridge')
+
 
 class DeleteFood(webapp2.RequestHandler):
     def post(self):
@@ -126,15 +114,6 @@ class DeleteFood(webapp2.RequestHandler):
 
 
 
-# class DeleteFruits(webapp2.RequestHandler):
-#     def post(self):
-#         to_delete = self.request.get('to_delete_fruits', allow_multiple=True)
-#         for entry in to_delete:
-#             key = ndb.Key(urlsafe=entry)
-#             key.delete()
-#         # redirect to '/' so that the MainPage.get() handler will run and show
-#         # the list of dogs.
-#         self.redirect('/fridge')
 
 
 app = webapp2.WSGIApplication([
@@ -144,6 +123,5 @@ app = webapp2.WSGIApplication([
     ('/recipe', RecipePage),
     ('/shopping_list', ShoppingListPage),
     ('/delete_food', DeleteFood),
-    ('/new_fruits', NewFruits),
-    ('/new_pantries', NewPantries)
+    
 ], debug=True)
