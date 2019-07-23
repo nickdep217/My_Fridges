@@ -4,6 +4,9 @@ from google.appengine.ext import ndb
 
 import jinja2
 import webapp2
+import api_functions
+
+
 
 from google.appengine.api import users
 
@@ -36,6 +39,7 @@ class HomePage(webapp2.RequestHandler):
           'login_url': users.create_login_url('/'),
           'logout_url': users.create_logout_url(self.request.uri),
         }
+    
         self.response.headers['Content-Type'] = 'text/html'
         self.response.write(template.render(data))
 
