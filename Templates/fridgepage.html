@@ -23,11 +23,11 @@
     <th><h2> <a href=/about >About</a></h2></th>
 
     </table>
-    <h1 style="font-family:Georgia;color:black;text-align:center;font-size:50px;">Your Fridge</h1>
+    <h1 class='fridge_header'><center>Welcome to your Fridge {{user.email()}}</center></h1>
 
     </div>
     <!-- <a href=/fridge ></a> -->
-
+<div style='float: left;width:610px;' padding: 0 842px>
 <form method="post">
 
         <h4>Meats</h4>
@@ -64,9 +64,13 @@
         <br>
         <input type="submit" name="" value="Submit" />
 </form>
+</div>
+
+
+<div style='float: left' >
 <h1>Items in Fridge</h1>
 <form class="" action="/delete_food" method="post">
-  <table>
+  <table cellspacing='25'>
     <tr>
       <th>Name</th>
       <th>Delete?</th>
@@ -74,13 +78,12 @@
     {% for each_meat in meats %}
     <tr>
       <td>{{each_meat.name}}</td>
-
       <td><input type="checkbox" name="to_delete" value="{{each_meat.key.urlsafe()}}"></td>
     </tr>
     {% endfor %}
     </table>
 
-    <table>
+    <table cellspacing='25'>
 
     {% for each_fruit in fruits %}
     <tr>
@@ -89,7 +92,7 @@
     </tr>
     {% endfor %}
   </table>
-  <table>
+  <table cellspacing='25'>
 
   {% for each_pantry in pantries %}
   <tr>
@@ -100,6 +103,7 @@
 </table>
   <input type="submit" name="" value="Delete Selected">
 </form>
+</div>
 
   </body>
 </html>
