@@ -23,14 +23,15 @@
     <th><h2> <a href=/about >About</a></h2></th>
 
     </table>
+    </div>
     <h1 class='fridge_header'><center>Welcome to your Fridge {{user.email()}}</center></h1>
 
-    </div>
+
     <!-- <a href=/fridge ></a> -->
 <div style='float: left;width:610px;' padding: 0 842px>
 <form method="post">
 
-        <h4>Meats</h4>
+        <h4 class='food_titles'>Meats</h4>
         <input type="checkbox" name="meat_name" value="bacon">Bacon<br>
         <input type="checkbox" name="meat_name" value="sausage">Sausage<br>
         <input type="checkbox" name="meat_name" value="turkey">Turkey<br>
@@ -43,7 +44,7 @@
 </form>
 <form method="post" action="/new_fruits">
 
-        <h4>Fruits</h4>
+        <h4 class='food_titles'>Fruits </h4>
         <input type="checkbox" name="fruit_name" value="strawberries">Strawberries<br>
         <input type="checkbox" name="fruit_name" value="bananas">Bananas<br>
         <input type="checkbox" name="fruit_name" value="mangos">Mangos<br>
@@ -56,7 +57,7 @@
 </form>
 <form method="post" action="/new_pantries">
 
-        <h4>Pantry</h4>
+        <h4 class='food_titles'>Pantry</h4>
         <input type="checkbox" name="pantry_name" value="flour">Flour<br>
         <input type="checkbox" name="pantry_name" value="sugar">Sugar<br>
         <input type="checkbox" name="pantry_name" value="baking soda">Baking Soda<br>

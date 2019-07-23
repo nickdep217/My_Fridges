@@ -19,7 +19,9 @@ a {
   color: #ff9900;
 }
 
-
+.food_titles{
+  font-size: 25px;
+}
 
 .title-glow:hover, .title-glow:focus, .title-glow:active {
 
