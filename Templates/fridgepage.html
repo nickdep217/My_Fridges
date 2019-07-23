@@ -29,8 +29,11 @@
 =======
 >>>>>>> 580c05a09bf2746c60bdb9af34411ee43b6f9693
     </div>
+    {% if user %}
     <h1 class='fridge_header'><center>Welcome to your Fridge {{user.email()}}</center></h1>
-
+    {% else %}
+    <h1 class='fridge_header'><center>Welcome to your Fridge</center></h1>
+    {% endif %}
 
     <!-- <a href=/fridge ></a> -->
 <div style='float: left;width:610px;' padding: 0 842px>
