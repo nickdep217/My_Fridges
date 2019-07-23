@@ -6,3 +6,9 @@
 a {
   color: white;
 }
+
+.title{
+  font-size: 250px;
+  color: white;
+  font-family: cursive;
+}
