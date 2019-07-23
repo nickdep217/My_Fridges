@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div>
+
+    <table bgcolor="#ff9900" width="1400" style="font-family:Georgia, Garamond, Serif;color:black;font-style:italic;">
+      <th><h2><a href=/fridge ></a></h2>
+              {% if user %}
+              <h1>User is {{user.email()}}</h1>
+              <h2><a href="{{logout_url}}">Logout</a></h2>
+              {% else %}
+              <h2><a href="{{login_url}}"><center>Login</center></a></h2>
+              {% endif %} <th>
+    <th><h2> <a href=/ >Home</a></h2></th>
+    <th><h2> <a href=/fridge >Fridge</a></h2></th>
+    <th><h2> <a href=/shopping_list >Shopping List</a></h2></th>
+    <th><h2> <a href=/recipe >Recipes</a></h2><th>
+    <th><h2> <a href=/about >About</a></h2></th>
+
+    </table>
+
+
+    <!-- <a href=/fridge ></a> -->
+    </div>
+  </body>
+</html>
