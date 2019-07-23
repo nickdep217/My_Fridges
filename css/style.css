@@ -13,6 +13,42 @@ a {
   font-family: cursive;
 }
 
+.a-glow:hover, .a-glow:focus, .a-glow:active {
+
+   -webkit-stroke-width: 5.3px;
+
+   -webkit-stroke-color: #FFFFFF;
+
+   -webkit-fill-color: #FFFFFF;
+
+   text-shadow: 1px 0px 20px yellow;
+
+   -webkit-transition: width 0.3s; /*Safari & Chrome*/
+
+   transition: width 0.3s;
+
+   -moz-transition: width 0.3s; /* Firefox 4 */
+
+   -o-transition: width 0.3s; /* Opera */
+
+   }
+
+   .a-glow a {
+
+     -webkit-transition: all 0.3s ease-in; /*Safari & Chrome*/
+
+     transition: all 0.3s ease-in;
+
+     -moz-transition: all 0.3s ease-in; /* Firefox 4 */
+
+     -o-transition: all 0.3s ease-in; /* Opera */
+
+     text-decoration:none;
+
+     color:white;
+
+     }
+
 .title-glow:hover, .title-glow:focus, .title-glow:active {
 
    -webkit-stroke-width: 5.3px;
