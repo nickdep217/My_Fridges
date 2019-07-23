@@ -8,7 +8,7 @@
   <body>
     <div>
 
-    <table bgcolor="#ff9900" width="1400" style="font-family:Georgia, Garamond, Serif;color:black;font-style:italic;">
+    <table bgcolor="black" width="1400" style="font-family:Georgia, Garamond, Serif;color:black;font-style:italic;">
       <th><h2><a href=/fridge ></a></h2>
               {% if user %}
 
@@ -23,7 +23,6 @@
     <th><h2> <a href=/about >About</a></h2></th>
 
     </table>
-
     </div>
     {% if user %}
     <h1 class='fridge_header'><center>Welcome to your Shopping List {{user.email()}}</center></h1>
@@ -35,7 +34,7 @@
 <div style='float: left;width:610px;' padding: 0 842px>
 <form method="post">
 
-        <h4 class='food_titles'>Food</h4>
+        <h4 class='food_titles'>What would you like to add to your shopping list?</h4>
 
         <input type="checkbox" name="food_name" value="bacon">Bacon<br>
         <input type="checkbox" name="food_name" value="sausage">Sausage<br>
