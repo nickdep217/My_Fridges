@@ -16,12 +16,16 @@ a {
 .fridge_header{
   font-family: cursive;
   font-size: 55px;
-  color: #ff9900;
+  color: black;
 }
 
+<<<<<<< HEAD
+
+=======
 .food_titles{
   font-size: 25px;
 }
+>>>>>>> 580c05a09bf2746c60bdb9af34411ee43b6f9693
 
 .title-glow:hover, .title-glow:focus, .title-glow:active {
 
