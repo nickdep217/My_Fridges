@@ -2,13 +2,14 @@
 <html lang="en" dir="ltr">
   <head>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC&display=swap" rel="stylesheet">
     <meta charset="utf-8">
     <title></title>
   </head>
-  <body bgcolor="#5F6A6A">
+  <body bgcolor="#E9EEED">
     <div>
 
-    <table bgcolor="black" width="1400" style="font-family:Georgia, Garamond, Serif;color:black;font-style:italic;">
+    <table bgcolor="black" width="1400" style="font-family: 'Amatic SC', cursive;color:black;">
       <th><h2><a href=/fridge ></a></h2>
               {% if user %}
 
@@ -34,7 +35,7 @@
 <div style='float: left;width:610px;' padding: 0 842px>
 <form method="post">
 
-        <h4 class='food_titles' style="color:white;">What would you like to add to your shopping list?</h4>
+        <h4 class='food_titles' style="color:black;">What would you like to add to your shopping list?</h4>
 
         <input type='text' name="grocery_name" value=""><br>
 
@@ -45,13 +46,13 @@
 
 
 <div style='float: left' >
-<h1 style="color:white;">Items in Shopping List</h1>
+<h1 style="color:black;">Items in Shopping List</h1>
 <form class="" action="/delete_grocery" method="post">
   <table cellspacing='25'>
     <tr>
-      <th style="color:white;">Name</th>
-      <th style="color:white;">Delete?</th>
-      <th style="color:white;">Did you buy this item?</th>
+      <th style="color:black;">Name</th>
+      <th style="color:black;">Delete?</th>
+      <th style="color:black;">Did you buy this item?</th>
     </tr>
     {% for each_grocery in grocery %}
     <tr>

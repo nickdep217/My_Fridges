@@ -5,16 +5,12 @@
     <meta charset="utf-8">
     <title></title>
   </head>
-  <body bgcolor="#5F6A6A">
-
-
-
+  <body bgcolor="#E9EEED">
     <div>
 
     <table bgcolor="black" width="1400" style="font-family:Georgia, Garamond, Serif;color:black;font-style:italic;">
       <th><h2><a href=/fridge ></a></h2>
               {% if user %}
-
               <h2><a href="{{logout_url}}">Logout</a></h2>
               {% else %}
               <h2><a href="{{login_url}}"><center>Login</center></a></h2>
@@ -27,21 +23,21 @@
 
     </table>
 
-      <h1 style="font-family:Georgia;color:black;text-align:center;font-style:italic; font-size:50px;">Recipes</h1>
-
-
+    <h1 class='fridge_header'><center>Recipes</center></h1>
+  
     </div>
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Ingredients Needed</th>
-    <th>Instructions</th>
+    <th>Here are the recipes that you can make:</th>
+    <!-- <th>Ingredients Needed</th>
+    <th>Instructions</th> -->
+
   </tr>
   {% for each_recipe in recipes_list %}
   <tr>
-    <td>{{each_recipe["name"]}}</td>
-    <td>{{each_recipe["image_url"]}}</td>
+    <td><a href="/individual_recipe_page">{{each_recipe["name"]}}</a></td>
+    <td><img src="{{each_recipe['image_url']}}"></td>
   </tr>
   {% endfor %}
 </table>
