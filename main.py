@@ -70,6 +70,7 @@ class FridgePage(webapp2.RequestHandler):
         each_food = Food(parent=root_parent())
         each_food.name = self.request.get('food_name')
         each_food.user = users.get_current_user()
+        print str(each_food.name)
 
         each_food.put()
             # redirect to '/' so that the get() version of this handler will run
@@ -123,5 +124,5 @@ app = webapp2.WSGIApplication([
     ('/recipe', RecipePage),
     ('/shopping_list', ShoppingListPage),
     ('/delete_food', DeleteFood),
-    
+
 ], debug=True)
