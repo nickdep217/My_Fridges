@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title></title>
   </head>
-  <body>
+  <body bgcolor="#5F6A6A">
     <div>
 
     <table bgcolor="black" width="1400" style="font-family:Georgia, Garamond, Serif;color:black;font-style:italic;">
@@ -34,7 +34,7 @@
 <div style='float: left;width:610px;' padding: 0 842px>
 <form method="post">
 
-        <h4 class='food_titles'>What would you like to add to your shopping list?</h4>
+        <h4 class='food_titles' style="color:white;">What would you like to add to your shopping list?</h4>
 
         <input type='text' name="grocery_name" value=""><br>
 
@@ -45,13 +45,12 @@
 
 
 <div style='float: left' >
-<h1>Items in Shopping List</h1>
-<form class="" action="/delete_grocery" action='add_to_fridge' method="post">
+<h1 style="color:white;">Items in Shopping List</h1>
+<form class="" action="/delete_grocery" method="post">
   <table cellspacing='25'>
     <tr>
-      <th>Name</th>
-      <th>Delete?</th>
-      <th>Did you buy this item?</th>
+      <th style="color:white;">Name</th>
+      <th style="color:white;">Delete?</th>
     </tr>
     {% for each_grocery in grocery %}
     <tr>
