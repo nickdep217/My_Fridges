@@ -86,8 +86,7 @@ class FridgePage(webapp2.RequestHandler):
 
 
         each_food.put()
-            # redirect to '/' so that the get() version of this handler will run
-            # and show the list of dogs.
+
         self.redirect('/fridge')
 
 class ShoppingListPage(webapp2.RequestHandler):
@@ -108,8 +107,7 @@ class ShoppingListPage(webapp2.RequestHandler):
         each_grocery.name = self.request.get('grocery_name')
         each_grocery.user = users.get_current_user()
         each_grocery.put()
-            # redirect to '/' so that the get() version of this handler will run
-            # and show the list of dogs.
+
         self.redirect('/shopping_list')
 
 class RecipePage(webapp2.RequestHandler):
@@ -139,8 +137,7 @@ class DeleteFood(webapp2.RequestHandler):
         for entry in to_delete:
             key = ndb.Key(urlsafe=entry)
             key.delete()
-        # redirect to '/' so that the MainPage.get() handler will run and show
-        # the list of dogs.
+
         self.redirect('/fridge')
 
 class DeleteGrocery(webapp2.RequestHandler):
@@ -153,8 +150,6 @@ class DeleteGrocery(webapp2.RequestHandler):
             key.delete()
         # if entry is to_add:
 
-        # redirect to '/' so that the MainPage.get() handler will run and show
-        # the list of dogs.
         self.redirect('/shopping_list')
 
 class AddGrocery(webapp2.RequestHandler):
@@ -163,8 +158,8 @@ class AddGrocery(webapp2.RequestHandler):
         for entry in to_add:
             key = ndb.Key(urlsafe=entry)
             key.delete()
-        # redirect to '/' so that the MainPage.get() handler will run and show
-        # the list of dogs.
+
+
         self.redirect('/shopping_list')
 
 class IndividualRecipe(webapp2.RequestHandler):
@@ -189,6 +184,6 @@ app = webapp2.WSGIApplication([
     ('/shopping_list', ShoppingListPage),
     ('/delete_food', DeleteFood),
     ('/delete_grocery', DeleteGrocery),
-    ('/add_to_fridge', AddGrocery)
+    ('/add_to_fridge', AddGrocery),
     ('/individual_recipe_page', IndividualRecipe)
 ], debug=True)
