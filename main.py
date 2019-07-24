@@ -117,13 +117,15 @@ class RecipePage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('templates/recipepage.html')
+        recipes_list = api_functions.search_recipes(["apples","flour","sugar"])
+        recipes_list = [api_functions.get_recipes(x) for x in recipes_list]
         data = {
           'user': user,
           'login_url': users.create_login_url('/'),
           'logout_url': users.create_logout_url(self.request.uri),
+          'recipes_list':recipes_list
         }
-        recipes_list = api_functions.search_recipes(["apples","flour","sugar"])
-        recipes_list = [api_functions.get_recipes(x) for x in recipes_list]
+
         #print recipes_list[0]["name"]
         self.response.headers['Content-Type'] = 'text/html'
         self.response.write(template.render(data))
