@@ -168,6 +168,7 @@ class AddGrocery(webapp2.RequestHandler):
         self.redirect('/shopping_list')
 
 class IndividualRecipe(webapp2.RequestHandler):
+
     def get(self):
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('templates/homepage.html')
@@ -189,6 +190,6 @@ app = webapp2.WSGIApplication([
     ('/shopping_list', ShoppingListPage),
     ('/delete_food', DeleteFood),
     ('/delete_grocery', DeleteGrocery),
-    ('/add_to_fridge', AddGrocery)
+    ('/add_to_fridge', AddGrocery),
     ('/individual_recipe_page', IndividualRecipe)
 ], debug=True)
