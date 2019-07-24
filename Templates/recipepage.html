@@ -29,25 +29,8 @@
 
       <h1 style="font-family:Georgia;color:black;text-align:center;font-style:italic; font-size:50px;">Recipes</h1>
 
-    <!-- <a href=/fridge ></a> -->
+
     </div>
-
-
-<!--h2 style="font-family:Georgia;color:black;font-style:italic; font-size: 40px">Recommended Recipes</h2>
-<dl style="list-style-type:circle; font-family: Georgia; font-size: 20px">
-<dd style="font-size: 10px">
-  <dt>Recipe one:  </dt>
-  <dd>-Required ingredints: </dd>
-  <dt>Recipe two: </dt>
-  <dd>-Required ingredients: </dd>
-  <dt>Recipe three: </dt>
-  <dd>-Required ingredients: </dd>
-  <dt>Recipe four: </dt>
-  <dd>-Required ingredients: </dd>
-  <dt>Recipe five: </dt>
-  <dd>-Required ingredients: </dd>
-</ul-->
-
 
 <table>
   <tr>
@@ -56,11 +39,10 @@
     <th>Instructions</th>
   </tr>
   {% for each_recipe in recipes_list %}
-  <tr class='each_recipe'>
-    <td class='clue_category'>{{each_recipe.category.name}}</td>
-    <td class='clue_value'>{{each_recipe.ingredients}}</td>
-    <td class='clue_question'>{{each_recipe.instructions}}</td>
+  <tr>
+    <td>{{each_recipe["name"]}}</td>
   </tr>
+  {% endfor %}
 </table>
 
 

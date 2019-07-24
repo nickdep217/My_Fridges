@@ -190,5 +190,5 @@ app = webapp2.WSGIApplication([
     ('/delete_food', DeleteFood),
     ('/delete_grocery', DeleteGrocery),
     ('/add_to_fridge', AddGrocery)
-    ('/individual_recipe_page', IndividualRecipe)
+    #('/individual_recipe_page', IndividualRecipe)
 ], debug=True)
