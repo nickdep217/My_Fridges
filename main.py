@@ -24,10 +24,13 @@ def root_parent():
     return ndb.Key('Parent', 'default_parent')
 
 class Food(ndb.Model):
-
     name = ndb.StringProperty()
     user = ndb.UserProperty()
 
+class Grocery(ndb.Model):
+
+    name = ndb.StringProperty()
+    user = ndb.UserProperty()
 class HomePage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
@@ -95,9 +98,20 @@ class ShoppingListPage(webapp2.RequestHandler):
           'user': user,
           'login_url': users.create_login_url('/'),
           'logout_url': users.create_logout_url(self.request.uri),
+          'grocery': Grocery.query(Grocery.user==user,ancestor=root_parent()).fetch(),
+
         }
         self.response.headers['Content-Type'] = 'text/html'
         self.response.write(template.render(data))
+    def post(self):
+        each_grocery = Grocery(parent=root_parent())
+        each_grocery.name = self.request.get('grocery_name')
+        each_grocery.user = users.get_current_user()
+
+        each_grocery.put()
+            # redirect to '/' so that the get() version of this handler will run
+            # and show the list of dogs.
+        self.redirect('/shopping_list')
 
 class RecipePage(webapp2.RequestHandler):
     def get(self):
@@ -116,6 +130,7 @@ class RecipePage(webapp2.RequestHandler):
 
 
 
+
 class DeleteFood(webapp2.RequestHandler):
     def post(self):
         to_delete = self.request.get('to_delete', allow_multiple=True)
@@ -126,7 +141,15 @@ class DeleteFood(webapp2.RequestHandler):
         # the list of dogs.
         self.redirect('/fridge')
 
-
+class DeleteGrocery(webapp2.RequestHandler):
+    def post(self):
+        to_delete = self.request.get('to_delete', allow_multiple=True)
+        for entry in to_delete:
+            key = ndb.Key(urlsafe=entry)
+            key.delete()
+        # redirect to '/' so that the MainPage.get() handler will run and show
+        # the list of dogs.
+        self.redirect('/shopping_list')
 
 
 
@@ -137,5 +160,5 @@ app = webapp2.WSGIApplication([
     ('/recipe', RecipePage),
     ('/shopping_list', ShoppingListPage),
     ('/delete_food', DeleteFood),
-
+    ('/delete_grocery', DeleteGrocery)
 ], debug=True)
