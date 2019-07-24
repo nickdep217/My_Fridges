@@ -23,7 +23,6 @@ def root_parent():
     return ndb.Key('Parent', 'default_parent')
 
 class Food(ndb.Model):
-
     name = ndb.StringProperty()
     user = ndb.UserProperty()
 
@@ -100,6 +99,7 @@ class RecipePage(webapp2.RequestHandler):
         }
         self.response.headers['Content-Type'] = 'text/html'
         self.response.write(template.render(data))
+
 
 
 
