@@ -68,6 +68,7 @@ class FridgePage(webapp2.RequestHandler):
           'food': Food.query(Food.user==user,ancestor=root_parent()).fetch(),
 
         }
+        #lists of foods in fridge
         food_list=[]
         for x in range(0,len(food_items)):
             food_list.append(food_items[x].name)
@@ -106,7 +107,6 @@ class ShoppingListPage(webapp2.RequestHandler):
         each_grocery = Grocery(parent=root_parent())
         each_grocery.name = self.request.get('grocery_name')
         each_grocery.user = users.get_current_user()
-
         each_grocery.put()
             # redirect to '/' so that the get() version of this handler will run
             # and show the list of dogs.
