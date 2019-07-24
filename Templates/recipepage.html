@@ -34,13 +34,20 @@
 
 <table>
   <tr>
+<<<<<<< HEAD
     <th style="color:white;">Name</th>
     <th style="color:white;">Ingredients</th>
     <th style="color:white;">Instructions</th>
+=======
+    <th>Name</th>
+    <th>Ingredients Needed</th>
+    <th>Instructions</th>
+>>>>>>> 603ec2eac495008059178c6ec334add95c8117f6
   </tr>
   {% for each_recipe in recipes_list %}
   <tr>
     <td>{{each_recipe["name"]}}</td>
+    <td>{{each_recipe["image_url"]}}</td>
   </tr>
   {% endfor %}
 </table>
