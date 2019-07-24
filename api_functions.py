@@ -1,4 +1,6 @@
 import api_key
+from google.appengine.api import urlfetch
+import json
 
 def get_recipes(recipe_id):#fix summary option
     headers = {"X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com","X-RapidAPI-Key": api_key.RapidAPI}
@@ -33,7 +35,7 @@ def search_recipes(args,num=5):
         headers = {"X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com","X-RapidAPI-Key": api_key.RapidAPI}
         args_string=""
         for arg in args:
-            args_string="%2C".join(args)
+            args_string="%2C".join(args) #fix bug
             args_string=args_string.replace(' ','+')
         result = urlfetch.fetch(
         url="https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number="+str(num)+"&ranking=2&ignorePantry=false&ingredients="+args_string,

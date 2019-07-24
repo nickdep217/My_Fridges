@@ -1,6 +1,7 @@
 import os
 
 from google.appengine.ext import ndb
+from google.appengine.api import urlfetch
 
 import jinja2
 import webapp2
@@ -56,21 +57,30 @@ class FridgePage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('templates/fridgepage.html')
+        food_items = Food.query(Food.user==user,ancestor=root_parent()).fetch()
         data = {
           'user': user,
           'login_url': users.create_login_url('/'),
           'logout_url': users.create_logout_url(self.request.uri),
-            'food': Food.query(Food.user==user,ancestor=root_parent()).fetch(),
+          'food': food_items#queries food in database that is for current user
             # 'fruits': Fruit.query(Fruit.user==user,ancestor=root_parent()).fetch(),
             # 'pantries': Pantry.query(Pantry.user==user,ancestor=root_parent()).fetch(),
         }
+        food_list=[]
+        for x in range(0,len(food_items)):
+            food_list.append(food_items[x].name)
+        print food_list
+        ####asdfjlas;dfjasd;lfk
+
         self.response.headers['Content-Type'] = 'text/html'
         self.response.write(template.render(data))
+
     def post(self):
         each_food = Food(parent=root_parent())
         each_food.name = self.request.get('food_name')
         each_food.user = users.get_current_user()
         print str(each_food.name)
+
 
         each_food.put()
             # redirect to '/' so that the get() version of this handler will run
@@ -98,6 +108,9 @@ class RecipePage(webapp2.RequestHandler):
           'login_url': users.create_login_url('/'),
           'logout_url': users.create_logout_url(self.request.uri),
         }
+        recipes_list = api_functions.search_recipes(["apples","flour","sugar"])
+        recipes_list = [api_functions.get_recipes(x) for x in recipes_list]
+        #print recipes_list[0]["name"]
         self.response.headers['Content-Type'] = 'text/html'
         self.response.write(template.render(data))
 
