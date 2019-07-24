@@ -23,7 +23,6 @@ def root_parent():
     return ndb.Key('Parent', 'default_parent')
 
 class Food(ndb.Model):
-
     name = ndb.StringProperty()
     user = ndb.UserProperty()
 
@@ -74,6 +73,7 @@ class FridgePage(webapp2.RequestHandler):
         each_food = Food(parent=root_parent())
         each_food.name = self.request.get('food_name')
         each_food.user = users.get_current_user()
+        print str(each_food.name)
 
         each_food.put()
             # redirect to '/' so that the get() version of this handler will run
@@ -114,6 +114,7 @@ class RecipePage(webapp2.RequestHandler):
         }
         self.response.headers['Content-Type'] = 'text/html'
         self.response.write(template.render(data))
+
 
 
 
