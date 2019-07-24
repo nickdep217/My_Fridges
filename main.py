@@ -172,11 +172,13 @@ class IndividualRecipe(webapp2.RequestHandler):
           'user': user,
           'login_url': users.create_login_url('/'),
           'logout_url': users.create_logout_url(self.request.uri),
-          'recipe_info':recipe_information
+          'recipe_info':recipe_information,
+          'numingredients': range(0, len(recipe_information["ingredients"]))
         }
 
         self.response.headers['Content-Type'] = 'text/html'
         self.response.write(template.render(data))
+        self.response.write("<h4 id='asdf' >"+recipe_information["instructions"]+"</h4>")
 
 
 app = webapp2.WSGIApplication([

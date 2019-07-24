@@ -6,10 +6,13 @@
   </head>
   <body bgcolor="#5F6A6A">
     <h1>{{recipe_info["name"]}}</h1>
-    <h1>{{recipe_info["ingredients"]}}</h1>
-    <h1>{{recipe_info["amounts"]}}</h1>
-    <h1>{{recipe_info["units"]}}</h1>
-    <h1>{{recipe_info["instructions"]}}</h1>
-
+    <h2>Ingredients</h2>
+    {% for x in numingredients %}
+    <h4><div style='float: left;width:110px;' >{{recipe_info["ingredients"][x]}}</h4>
+    <h4><div style='float: left;width:110px;' >{{recipe_info["amounts"][x]}}</h4>
+    <h4><div style='float: left;width:110px;' >{{recipe_info["units"][x]}}</h4></br>
+    {% endfor %}
+    <!-- <h1>{{recipe_info["instructions"]}}</h1> -->
+    <h2>Instructions</h2>
   </body>
 </html>
