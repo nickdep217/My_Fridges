@@ -152,6 +152,31 @@ class DeleteGrocery(webapp2.RequestHandler):
         # the list of dogs.
         self.redirect('/shopping_list')
 
+class AddGrocery(webapp2.RequestHandler):
+    def post(self):
+        to_add = self.request.get('to_add', allow_multiple=True)
+        for entry in to_add:
+            key = ndb.Key(urlsafe=entry)
+            key.delete()
+
+
+        self.redirect('/shopping_list')
+
+class IndividualRecipe(webapp2.RequestHandler):
+
+    def get(self):
+        user = users.get_current_user()
+        template = JINJA_ENVIRONMENT.get_template('templates/individual_recipe.html')
+        recipe_information= api_functions.get_recipes("641803")
+        data = {
+          'user': user,
+          'login_url': users.create_login_url('/'),
+          'logout_url': users.create_logout_url(self.request.uri),
+          'recipe_info':recipe_information
+        }
+
+        self.response.headers['Content-Type'] = 'text/html'
+        self.response.write(template.render(data))
 
 
 app = webapp2.WSGIApplication([
