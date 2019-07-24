@@ -36,22 +36,8 @@
 
         <h4 class='food_titles'>What would you like to add to your shopping list?</h4>
 
-        <input type="checkbox" name="food_name" value="bacon">Bacon<br>
-        <input type="checkbox" name="food_name" value="sausage">Sausage<br>
-        <input type="checkbox" name="food_name" value="turkey">Turkey<br>
-        <input type="checkbox" name="food_name" value="chicken">Chicken<br>
-        <input type="checkbox" name="food_name" value="steak">Steak<br>
-        <input type="checkbox" name="food_name" value="ground beef">Ground Beef<br>
-        <input type="checkbox" name="food_name" value="strawberries">Strawberries<br>
-        <input type="checkbox" name="food_name" value="bananas">Bananas<br>
-        <input type="checkbox" name="food_name" value="mangos">Mangos<br>
-        <input type="checkbox" name="food_name" value="pineapples">Pineapples<br>
-        <input type="checkbox" name="food_name" value="apples">Apples<br>
-        <input type="checkbox" name="food_name" value="blueberries">Blueberries<br>
-        <input type="checkbox" name="food_name" value="flour">Flour<br>
-        <input type="checkbox" name="food_name" value="sugar">Sugar<br>
-        <input type="checkbox" name="food_name" value="baking soda">Baking Soda<br>
-        <input type="checkbox" name="food_name" value="baking powder">Baking Powder<br>
+        <input type='text' name="grocery_name" value=""><br>
+
         <br>
         <input type="submit" name="" value="Submit" />
 </form>
@@ -60,16 +46,16 @@
 
 <div style='float: left' >
 <h1>Items in Shopping List</h1>
-<form class="" action="/delete_food" method="post">
+<form class="" action="/delete_grocery" method="post">
   <table cellspacing='25'>
     <tr>
       <th>Name</th>
       <th>Delete?</th>
     </tr>
-    {% for each_food in food %}
+    {% for each_grocery in grocery %}
     <tr>
-      <td>{{each_food.name}}</td>
-      <td><input type="checkbox" name="to_delete" value="{{each_food.key.urlsafe()}}"></td>
+      <td>{{each_grocery.name}}</td>
+      <td><input type="checkbox" name="to_delete" value="{{each_grocery.key.urlsafe()}}"></td>
     </tr>
     {% endfor %}
     </table>
