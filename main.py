@@ -66,7 +66,7 @@ class FridgePage(webapp2.RequestHandler):
           'login_url': users.create_login_url('/'),
           'logout_url': users.create_logout_url(self.request.uri),
           'food': Food.query(Food.user==user,ancestor=root_parent()).fetch(),
-            
+
         }
         #lists of foods in fridge
         food_list=[]
@@ -167,6 +167,20 @@ class AddGrocery(webapp2.RequestHandler):
         # the list of dogs.
         self.redirect('/shopping_list')
 
+class IndividualRecipe(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        template = JINJA_ENVIRONMENT.get_template('templates/homepage.html')
+        data = {
+          'user': user,
+          'login_url': users.create_login_url('/'),
+          'logout_url': users.create_logout_url(self.request.uri),
+        }
+
+        self.response.headers['Content-Type'] = 'text/html'
+        self.response.write(template.render(data))
+
+
 app = webapp2.WSGIApplication([
     ('/', HomePage),
     ('/about', AboutPage),
@@ -176,4 +190,5 @@ app = webapp2.WSGIApplication([
     ('/delete_food', DeleteFood),
     ('/delete_grocery', DeleteGrocery),
     ('/add_to_fridge', AddGrocery)
+    ('/individual_recipe_page', IndividualRecipe)
 ], debug=True)
