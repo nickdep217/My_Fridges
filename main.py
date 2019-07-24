@@ -64,8 +64,7 @@ class FridgePage(webapp2.RequestHandler):
           'login_url': users.create_login_url('/'),
           'logout_url': users.create_logout_url(self.request.uri),
           'food': Food.query(Food.user==user,ancestor=root_parent()).fetch(),
-            # 'fruits': Fruit.query(Fruit.user==user,ancestor=root_parent()).fetch(),
-            # 'pantries': Pantry.query(Pantry.user==user,ancestor=root_parent()).fetch(),
+
         }
         self.response.headers['Content-Type'] = 'text/html'
         self.response.write(template.render(data))
@@ -121,6 +120,7 @@ class RecipePage(webapp2.RequestHandler):
 class DeleteFood(webapp2.RequestHandler):
     def post(self):
         to_delete = self.request.get('to_delete', allow_multiple=True)
+
         for entry in to_delete:
             key = ndb.Key(urlsafe=entry)
             key.delete()
@@ -130,15 +130,27 @@ class DeleteFood(webapp2.RequestHandler):
 
 class DeleteGrocery(webapp2.RequestHandler):
     def post(self):
+        print(self.request.get('add'))
         to_delete = self.request.get('to_delete', allow_multiple=True)
+        
         for entry in to_delete:
+            key = ndb.Key(urlsafe=entry)
+            key.delete()
+        # if entry is to_add:
+
+        # redirect to '/' so that the MainPage.get() handler will run and show
+        # the list of dogs.
+        self.redirect('/shopping_list')
+
+class AddGrocery(webapp2.RequestHandler):
+    def post(self):
+        to_add = self.request.get('to_add', allow_multiple=True)
+        for entry in to_add:
             key = ndb.Key(urlsafe=entry)
             key.delete()
         # redirect to '/' so that the MainPage.get() handler will run and show
         # the list of dogs.
         self.redirect('/shopping_list')
-
-
 
 app = webapp2.WSGIApplication([
     ('/', HomePage),
@@ -147,5 +159,6 @@ app = webapp2.WSGIApplication([
     ('/recipe', RecipePage),
     ('/shopping_list', ShoppingListPage),
     ('/delete_food', DeleteFood),
-    ('/delete_grocery', DeleteGrocery)
+    ('/delete_grocery', DeleteGrocery),
+    ('/add_to_fridge', AddGrocery)
 ], debug=True)

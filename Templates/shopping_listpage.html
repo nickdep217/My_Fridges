@@ -46,22 +46,27 @@
 
 <div style='float: left' >
 <h1>Items in Shopping List</h1>
-<form class="" action="/delete_grocery" method="post">
+<form class="" action="/delete_grocery" action='add_to_fridge' method="post">
   <table cellspacing='25'>
     <tr>
       <th>Name</th>
       <th>Delete?</th>
+      <th>Did you buy this item?</th>
     </tr>
     {% for each_grocery in grocery %}
     <tr>
       <td>{{each_grocery.name}}</td>
       <td><input type="checkbox" name="to_delete" value="{{each_grocery.key.urlsafe()}}"></td>
+      <td><input type="checkbox" name="to_add" value="{{each_grocery.key.urlsafe()}}"></td>
     </tr>
+    <tr>
+
     {% endfor %}
     </table>
 
 
-  <input type="submit" name="" value="Delete Selected">
+  <input type="submit" name="delete" value="Delete Selected">
+  <input type="submit" name="add" value="Add to Fridge">
 </form>
 </div>
 
