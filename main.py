@@ -65,7 +65,7 @@ class FridgePage(webapp2.RequestHandler):
           'user': user,
           'login_url': users.create_login_url('/'),
           'logout_url': users.create_logout_url(self.request.uri),
-          'food': Food.query(Food.user==user,ancestor=root_parent()).fetch(),
+          'food': food_items
 
         }
         #lists of foods in fridge
@@ -167,7 +167,7 @@ class IndividualRecipe(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('templates/individual_recipe.html')
-        recipe_information= api_functions.get_recipes("641803")
+        recipe_information= api_functions.get_recipes("641803") #change the id number to a variable
         data = {
           'user': user,
           'login_url': users.create_login_url('/'),
@@ -177,6 +177,11 @@ class IndividualRecipe(webapp2.RequestHandler):
 
         self.response.headers['Content-Type'] = 'text/html'
         self.response.write(template.render(data))
+
+class TestPage(webapp2.RequestHandler):
+    def get(self):
+        recipies = api_functions.search_recipes_new(["apples","flour","sugar"])
+        print recipies["names"]
 
 
 app = webapp2.WSGIApplication([
@@ -188,5 +193,6 @@ app = webapp2.WSGIApplication([
     ('/delete_food', DeleteFood),
     ('/delete_grocery', DeleteGrocery),
     ('/add_to_fridge', AddGrocery),
-    ('/individual_recipe_page', IndividualRecipe)
+    ('/individual_recipe_page', IndividualRecipe),
+    ('/test', TestPage)
 ], debug=True)

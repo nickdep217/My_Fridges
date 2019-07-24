@@ -47,8 +47,8 @@ def search_recipes(args,num=5):
              pretty_results.append(pretty_result[x]["id"])
         return pretty_results
 
-"""
-def search_recipes(args,num=5):
+
+def search_recipes_new(args,num=5):
         headers = {"X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com","X-RapidAPI-Key": api_key.RapidAPI}
         args_string=""
         for arg in args:
@@ -62,8 +62,7 @@ def search_recipes(args,num=5):
         pretty_id=[]
         pretty_names =[]
         pretty_usedingredients=[]
-        pretty_missingingredients[]
-
+        pretty_missingingredients=[]
         for x in range(0,num):
              pretty_id.append(pretty_result[x]["id"])
              pretty_names.append(pretty_result[x]["title"])
@@ -71,5 +70,3 @@ def search_recipes(args,num=5):
              pretty_missingingredients.append(pretty_result[x]["missedIngredientCount"])
         return {"id":pretty_id, "names": pretty_names, "used ingredients": pretty_usedingredients,
          "missing ingredients":pretty_missingingredients}
-
-"""
