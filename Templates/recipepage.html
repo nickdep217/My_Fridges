@@ -34,14 +34,14 @@
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Ingredients Needed</th>
-    <th>Instructions</th>
+    <th>Here's the recipes that you can make:</th>
+    <!-- <th>Ingredients Needed</th>
+    <th>Instructions</th> -->
   </tr>
   {% for each_recipe in recipes_list %}
   <tr>
-    <td>{{each_recipe["name"]}}</td>
-    <td>{{each_recipe["image_url"]}}</td>
+    <td><a href="/individual_recipe_page">{{each_recipe["name"]}}</a></td>
+    <td><img src="{{each_recipe['image_url']}}"></td>
   </tr>
   {% endfor %}
 </table>
