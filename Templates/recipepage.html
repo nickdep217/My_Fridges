@@ -36,7 +36,7 @@
   </tr>
   {% for each_recipe in recipes_list %}
   <tr>
-    <td style="font-family: 'Amatic SC', cursive; color: black; font-size:32px;"<a href='/individual_recipe_page?id={{each_recipe["id"]}}'>{{each_recipe["name"]}}</a></td>
+    <td style="font-family: 'Amatic SC', cursive; color: black; font-size:32px;"><a href='/individual_recipe_page?id={{each_recipe["id"]}}'>{{each_recipe["name"]}}</a></td>
     <td><img src="{{each_recipe['image_url']}}"></td>
   </tr>
   {% endfor %}
