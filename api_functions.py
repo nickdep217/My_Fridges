@@ -64,7 +64,7 @@ def search_recipes_new(args,num=5):
         pretty_usedingredients=[]
         pretty_missingingredients=[]
         for x in range(0,num):
-             pretty_id.append(pretty_result[x]["id"])
+             pretty_id.append(str(pretty_result[x]["id"]))
              pretty_names.append(pretty_result[x]["title"])
              pretty_usedingredients.append(pretty_result[x]["usedIngredientCount"])
              pretty_missingingredients.append(pretty_result[x]["missedIngredientCount"])
