@@ -170,7 +170,9 @@ class IndividualRecipe(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('templates/individual_recipe.html')
-        recipe_information= api_functions.get_recipes("641803") #change the id number to a variable
+        id_recipe= str(self.request.get("id"))
+        recipe_information= api_functions.get_recipes(id_recipe) #change the id number to a variable
+        print type(recipe_information["instructions"])
         data = {
           'user': user,
           'login_url': users.create_login_url('/'),
@@ -181,7 +183,7 @@ class IndividualRecipe(webapp2.RequestHandler):
 
         self.response.headers['Content-Type'] = 'text/html'
         self.response.write(template.render(data))
-        self.response.write("<h4 id='asdf' >"+recipe_information["instructions"]+"</h4>")
+        self.response.write("<h4>"+recipe_information['instructions']+"</h4>")
 
 class TestPage(webapp2.RequestHandler):
     def get(self):

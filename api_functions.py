@@ -29,7 +29,7 @@ def get_recipes(recipe_id):#fix summary option
     name = get_results_two["title"]
     summary = get_results_two["summary"]
     return {"ingredients":ingredients,"amounts":amounts, "units": units, "instructions":instructions, "image_url":image_url,
-    "name":name,"summary":summary}
+    "name":name,"summary":summary, "id": recipe_id}
 
 def search_recipes(args,num=5):
         headers = {"X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com","X-RapidAPI-Key": api_key.RapidAPI}

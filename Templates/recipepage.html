@@ -24,7 +24,7 @@
     </table>
 
     <h1 class='fridge_header'><center>Recipes</center></h1>
-  
+
     </div>
 
 <table>
@@ -36,7 +36,7 @@
   </tr>
   {% for each_recipe in recipes_list %}
   <tr>
-    <td><a href="/individual_recipe_page">{{each_recipe["name"]}}</a></td>
+    <td><a href='/individual_recipe_page?id={{each_recipe["id"]}}'>{{each_recipe["name"]}}</a></td>
     <td><img src="{{each_recipe['image_url']}}"></td>
   </tr>
   {% endfor %}
