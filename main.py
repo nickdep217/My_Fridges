@@ -122,7 +122,8 @@ class RecipePage(webapp2.RequestHandler):
         #print food_list
         #["apples","flour","sugar"]
         recipes_list = api_functions.search_recipes(food_list)
-        recipes_list = [api_functions.get_recipes(x) for x in recipes_list]
+        if recipes_list:
+            recipes_list = [api_functions.get_recipes(x) for x in recipes_list]
         data = {
           'user': user,
           'login_url': users.create_login_url('/'),

@@ -25,25 +25,30 @@
     </table>
 
       <h1 style="font-family: 'Amatic SC', cursive;color:black;text-align:center; font-size:50px;">Recipes</h1>
-      <h1 class='fridge_header'><center>Recipes</center></h1>
+      <!--h1 class='fridge_header'><center>Recipes</center></h1-->
 
     </div>
 {% if user %}
 
 <table>
   <tr>
+    {% if recipe_list %}
     <th>Here are the recipes that you can make:</th>
     <!-- <th>Ingredients Needed</th>
     <th>Instructions</th> -->
-
+    {% endif %}
   </tr>
+  {% if recipes_list %}
   {% for each_recipe in recipes_list %}
+
   <tr>
     <td><a href='/individual_recipe_page?id={{each_recipe["id"]}}'>{{each_recipe["name"]}}</a></td>
     <td><img src="{{each_recipe['image_url']}}"></td>
   </tr>
   {% endfor %}
-
+  {% else %}
+  <h1 style= text-align:center; > Add items to your fridge to see recipes </h1>
+  {% endif %}
   {% else %}
   <h2> Please Log in to View Recipes </h2>
   {% endif %}
