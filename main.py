@@ -77,13 +77,16 @@ class FridgePage(webapp2.RequestHandler):
         self.response.write(template.render(data))
 
     def post(self):
-        each_food = Food(parent=root_parent())
-        each_food.name = self.request.get('food_name')
-        each_food.user = users.get_current_user()
-        print str(each_food.name)
+
+        foods= self.request.get('food_name',allow_multiple=True)
+        for food in foods:
+            each_food = Food(parent=root_parent())
+            each_food.name =food
+            each_food.user = users.get_current_user()
+            each_food.put()
+            print str(each_food.name)
 
 
-        each_food.put()
             # redirect to '/' so that the get() version of this handler will run
             # and show the list of dogs.
         self.redirect('/fridge')
@@ -122,7 +125,8 @@ class RecipePage(webapp2.RequestHandler):
         #print food_list
         #["apples","flour","sugar"]
         recipes_list = api_functions.search_recipes(food_list)
-        recipes_list = [api_functions.get_recipes(x) for x in recipes_list]
+        if recipes_list:
+            recipes_list = [api_functions.get_recipes(x) for x in recipes_list]
         data = {
           'user': user,
           'login_url': users.create_login_url('/'),

@@ -43,9 +43,10 @@ def search_recipes(args,num=5):
         headers=headers)
         pretty_result = json.loads(result.content)
         pretty_results=[]
-        for x in range(0,num):
-             pretty_results.append(pretty_result[x]["id"])
-        return pretty_results
+        if pretty_result:
+            for x in range(0,num):
+                 pretty_results.append(pretty_result[x]["id"])
+            return pretty_results
 
 
 def search_recipes_new(args,num=5):
