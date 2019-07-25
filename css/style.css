@@ -9,9 +9,6 @@
   background-position:  90% 90%;
 }
 
-.fridge_header {
-  font-family: 'Amatic SC', cursive
-}
 
 a {
   color: white;
@@ -19,12 +16,12 @@ a {
 
 .title{
   font-size: 250px;
-  color: white;
-  font-family: cursive;
+  color: black;
+  font-family: 'Amatic SC', cursive;
 }
 
 .fridge_header{
-  font-family: cursive;
+  font-family: 'Amatic SC', cursive;
   font-size: 55px;
   color: black;
 }
@@ -34,6 +31,7 @@ a {
 
 .food_titles{
   font-size: 25px;
+  color: white
 }
 
 
