@@ -69,6 +69,7 @@ class FridgePage(webapp2.RequestHandler):
             # 'fruits': Fruit.query(Fruit.user==user,ancestor=root_parent()).fetch(),
             # 'pantries': Pantry.query(Pantry.user==user,ancestor=root_parent()).fetch(),
         }
+
         food_list=[]
         for x in range(0,len(food_items)):
             food_list.append(food_items[x].name)
@@ -117,13 +118,15 @@ class RecipePage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('templates/recipepage.html')
+        recipes_list = api_functions.search_recipes(["apples","flour","sugar"])
+        recipes_list = [api_functions.get_recipes(x) for x in recipes_list]
         data = {
           'user': user,
           'login_url': users.create_login_url('/'),
           'logout_url': users.create_logout_url(self.request.uri),
+          'recipes_list': recipes_list
         }
-        recipes_list = api_functions.search_recipes(["apples","flour","sugar"])
-        recipes_list = [api_functions.get_recipes(x) for x in recipes_list]
+
         #print recipes_list[0]["name"]
         self.response.headers['Content-Type'] = 'text/html'
         self.response.write(template.render(data))
@@ -167,7 +170,9 @@ class IndividualRecipe(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('templates/individual_recipe.html')
-        recipe_information= api_functions.get_recipes("641803")
+        id_recipe= str(self.request.get("id"))
+        recipe_information= api_functions.get_recipes(id_recipe) #change the id number to a variable
+        print type(recipe_information["instructions"])
         data = {
           'user': user,
           'login_url': users.create_login_url('/'),
@@ -178,7 +183,12 @@ class IndividualRecipe(webapp2.RequestHandler):
 
         self.response.headers['Content-Type'] = 'text/html'
         self.response.write(template.render(data))
-        self.response.write("<h4 id='asdf' >"+recipe_information["instructions"]+"</h4>")
+        self.response.write("<h4>"+recipe_information['instructions']+"</h4>")
+
+class TestPage(webapp2.RequestHandler):
+    def get(self):
+        recipies = api_functions.search_recipes_new(["apples","flour","sugar"])
+        print recipies["names"]
 
 
 app = webapp2.WSGIApplication([
@@ -188,5 +198,8 @@ app = webapp2.WSGIApplication([
     ('/recipe', RecipePage),
     ('/shopping_list', ShoppingListPage),
     ('/delete_food', DeleteFood),
-    ('/delete_grocery', DeleteGrocery)
+    ('/delete_grocery', DeleteGrocery),
+    ('/add_to_fridge', AddGrocery),
+    ('/individual_recipe_page', IndividualRecipe),
+    ('/test', TestPage)
 ], debug=True)
