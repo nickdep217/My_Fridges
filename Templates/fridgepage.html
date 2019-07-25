@@ -33,7 +33,6 @@
     {% endif %}
 
 {% if user %}
-
     <!-- <a href=/fridge ></a> -->
 <div style='float: left;width:410px;' padding: 0 842px>
 <form method="post">
@@ -107,12 +106,12 @@
 
 
 <div style='float: left' >
-<h1 style="color:black">Items in Fridge</h1>
+<h1 style="color:black; font-family: 'Amatic SC', cursive">Items in Fridge</h1>
 <form class="" action="/delete_food" method="post">
   <table cellspacing='25'>
     <tr>
-      <th style="color:black;">Name</th>
-      <th style="color:black;">Delete?</th>
+      <th style="color:black; font-family: 'Amatic SC', cursive">Name</th>
+      <th style="color:black; font-family: 'Amatic SC', cursive">Delete?</th>
     </tr>
     {% for each_food in food %}
     <tr>
