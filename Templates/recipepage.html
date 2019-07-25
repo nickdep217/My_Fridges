@@ -28,6 +28,7 @@
       <h1 class='fridge_header'><center>Recipes</center></h1>
 
     </div>
+{% if user %}
 
 <table>
   <tr>
@@ -42,6 +43,10 @@
     <td><img src="{{each_recipe['image_url']}}"></td>
   </tr>
   {% endfor %}
+
+  {% else %}
+  <h2> Please Log in to View Recipes </h2>
+  {% endif %}
 </table>
 
 

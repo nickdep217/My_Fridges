@@ -70,10 +70,7 @@ class FridgePage(webapp2.RequestHandler):
             # 'pantries': Pantry.query(Pantry.user==user,ancestor=root_parent()).fetch(),
         }
 
-        food_list=[]
-        for x in range(0,len(food_items)):
-            food_list.append(food_items[x].name)
-        print food_list
+
         ####asdfjlas;dfjasd;lfk
 
         self.response.headers['Content-Type'] = 'text/html'
@@ -118,7 +115,13 @@ class RecipePage(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         template = JINJA_ENVIRONMENT.get_template('templates/recipepage.html')
-        recipes_list = api_functions.search_recipes(["apples","flour","sugar"])
+        food_items = Food.query(Food.user==user,ancestor=root_parent()).fetch()
+        food_list=[]
+        for x in range(0,len(food_items)):
+            food_list.append(food_items[x].name)
+        #print food_list
+        #["apples","flour","sugar"]
+        recipes_list = api_functions.search_recipes(food_list)
         recipes_list = [api_functions.get_recipes(x) for x in recipes_list]
         data = {
           'user': user,
@@ -183,7 +186,7 @@ class IndividualRecipe(webapp2.RequestHandler):
 
         self.response.headers['Content-Type'] = 'text/html'
         self.response.write(template.render(data))
-        self.response.write("<h4>"+recipe_information['instructions']+"</h4>")
+        self.response.write("<h4>"+str(recipe_information['instructions'])+"</h4>")
 
 class TestPage(webapp2.RequestHandler):
     def get(self):
