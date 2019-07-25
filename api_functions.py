@@ -25,7 +25,7 @@ def get_recipes(recipe_id):#fix summary option
     method=urlfetch.GET,
     headers=headers)
     get_results_two = json.loads(result_two.content)
-    print get_results_two
+    #print get_results_two
     name = get_results_two["title"]
     summary = get_results_two["summary"]
     return {"ingredients":ingredients,"amounts":amounts, "units": units, "instructions":instructions, "image_url":image_url,
