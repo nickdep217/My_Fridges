@@ -37,7 +37,7 @@
 <div style='float: left;width:610px;' padding: 0 842px>
 <form method="post">
 
-        <h4 class='food_titles' style="color:black;">What would you like to add to your shopping list?</h4>
+        <h4 class='food_titles' style="color:black; font-family: 'Amatic SC', cursive" >What would you like to add to your shopping list?</h4>
 
         <input type='text' name="grocery_name" value=""><br>
 
@@ -48,13 +48,13 @@
 
 
 <div style='float: left' >
-<h1 style="color:black;">Items in Shopping List</h1>
+<h1 style="color:black; font-family: 'Amatic SC', cursive">Items in Shopping List</h1>
 <form class="" action="/delete_grocery" method="post">
   <table cellspacing='25'>
     <tr>
-      <th style="color:black;">Name</th>
-      <th style="color:black;">Delete?</th>
-      <th style="color:black;">Did you buy this item?</th>
+      <th style="color:black; font-family: 'Amatic SC', cursive">Name</th>
+      <th style="color:black; font-family: 'Amatic SC', cursive">Delete?</th>
+      <th style="color:black; font-family: 'Amatic SC', cursive">Did you buy this item?</th>
     </tr>
     {% for each_grocery in grocery %}
     <tr>
