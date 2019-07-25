@@ -9,6 +9,10 @@
   background-position:  90% 90%;
 }
 
+.fridge_header {
+  font-family: 'Amatic SC', cursive
+}
+
 a {
   color: white;
 }
