@@ -76,13 +76,22 @@ class FridgePage(webapp2.RequestHandler):
         self.response.write(template.render(data))
 
     def post(self):
-        each_food = Food(parent=root_parent())
 
-        each_food.name = self.request.get('food_name')
-        each_food.user = users.get_current_user()
+        # each_food = Food(parent=root_parent())
+        #
+        # each_food.name = self.request.get('food_name')
+        # each_food.user = users.get_current_user()
 
 
-        each_food.put()
+        foods= self.request.get('food_name',allow_multiple=True)
+        for food in foods:
+            each_food = Food(parent=root_parent())
+            each_food.name =food
+            each_food.user = users.get_current_user()
+            each_food.put()
+            print str(each_food.name)
+
+
             # redirect to '/' so that the get() version of this handler will run
             # and show the list of dogs.
         self.redirect('/fridge')
@@ -121,7 +130,8 @@ class RecipePage(webapp2.RequestHandler):
         #print food_list
         #["apples","flour","sugar"]
         recipes_list = api_functions.search_recipes(food_list)
-        recipes_list = [api_functions.get_recipes(x) for x in recipes_list]
+        if recipes_list:
+            recipes_list = [api_functions.get_recipes(x) for x in recipes_list]
         data = {
           'user': user,
           'login_url': users.create_login_url('/'),
@@ -189,8 +199,27 @@ class IndividualRecipe(webapp2.RequestHandler):
 
 class TestPage(webapp2.RequestHandler):
     def get(self):
+
+        template = JINJA_ENVIRONMENT.get_template('templates/testpage.html')
+        """
         recipies = api_functions.search_recipes_new(["apples","flour","sugar"])
+        self.response.write(recipies["id"])
         print recipies["names"]
+        """
+        recipies= api_functions.search_recipes(['flour'],num=30)
+        var2 = []
+        for x in range(0, len(recipies)):
+            var1 =api_functions.get_recipes(recipies[x])
+            var2 = list(set(var1["ingredients"] + var2))
+
+        print var2
+
+        for food in var2:
+            food_capitalized= food[0:1:]+food[1::]
+            food_lower = food.lower()
+            print '<input type="checkbox" name="food_name" value="{}" style="color:white;">{}<br>'.format(food_lower, food_capitalized)
+
+
 
 
 app = webapp2.WSGIApplication([

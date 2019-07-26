@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+        <link href="https://fonts.googleapis.com/css?family=Amatic+SC&display=swap" rel="stylesheet">
     <meta charset="utf-8">
     <title></title>
   </head>
   <body bgcolor="#E9EEED">
-    <h1>{{recipe_info["name"]}}</h1>
-    <h2>Ingredients</h2>
+    <h1 style="font-family: 'Amatic SC', cursive; color: black ; text-align:center; font-size: 60px;">{{recipe_info["name"]}}</h1>
+    <h2 style="font-family: 'Amatic SC', cursive; color: black ; text-align:left; font-size:40px;">Ingredients</h1>
     {% for x in numingredients %}
-    <h4><div style='float: left;width:110px;' >{{recipe_info["ingredients"][x]}}</h4>
-    <h4><div style='float: left;width:110px;' >{{recipe_info["amounts"][x]}}</h4>
-    <h4><div style='float: left;width:110px;' >{{recipe_info["units"][x]}}</h4></br>
-    
+    <h4 style="font-family: 'Amatic SC', cursive; color: black; text-align: left; font-size:20px;"><div style='float: left;width:110px;' >{{recipe_info["ingredients"][x]}}</h4>
+    <h4 style="font-family: 'Amatic SC', cursive; color: black; text-align: left; font-size:20px;"><div style='float: left;width:110px;' >{{recipe_info["amounts"][x]}}</h4>
+    <h4 style="font-family: 'Amatic SC', cursive; color: black; text-align: left; font-size:20px;"><div style='float: left;width:110px;' >{{recipe_info["units"][x]}}</h4></br>
     {% endfor %}
     <!-- <h1>{{recipe_info["instructions"]}}</h1> -->
-    <h2>Instructions</h2>
+    <h2 style="font-family: 'Amatic SC', cursive; color: black ; text-align:left; font-size:40px;">Instructions</h1>
   </body>
 </html>

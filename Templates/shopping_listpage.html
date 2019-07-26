@@ -25,9 +25,9 @@
     </table>
     </div>
     {% if user %}
-    <h1 class='fridge_header' style= font-family: 'Amatic SC', cursive><center>Welcome to your Shopping List {{user.email()}}</center></h1>
+    <h1 class='fridge_header'><center>Welcome to your Shopping List {{user.email()}}</center></h1>
     {% else %}
-    <h1 class='fridge_header' style= font-family: 'Amatic SC', cursive><center>Welcome to your Shopping List</center></h1>
+    <h1 class='fridge_header'><center>Welcome to your Shopping List</center></h1>
     {% endif %}
 
 {% if user %}
@@ -71,7 +71,7 @@
 </form>
 </div>
 {% else %}
-<h2> Please Log in to View Your Shopping List </h2>
+  <h2 style="font-family: 'Amatic SC', cursive;color:black;text-align:left; font-size: 30px;"> Please Log in to View Your Shopping List</h2>
 {% endif %}
   </body>
 </html>
