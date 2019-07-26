@@ -23,9 +23,9 @@
     <th><h2> <a href=/about >About</a></h2></th>
 
     </table>
-      <h1 style="font-family: 'Amatic SC', cursive;color:black;text-align:center; font-size:50px;">Recipes</h1>
 
-      <!--h1 class='fridge_header'><center>Recipes</center></h1-->
+<center><h1 style="font-family: 'Amatic SC', cursive; color:black; font-size:55px;">Recipes</h1></center>
+
 
 
     </div>
@@ -36,8 +36,6 @@
     {% if recipes_list %}
     <th style="font-family: 'Amatic SC', cursive; color:black; font-size:35px;">Here are the recipes that you can make:</th>
 
-    <!-- <th>Ingredients Needed</th>
-    <th>Instructions</th> -->
     {% endif %}
   </tr>
   {% if recipes_list %}
@@ -47,7 +45,7 @@
     <td style="font-family: 'Amatic SC', cursive; color: black; font-size:32px;"><a href='/individual_recipe_page?id={{each_recipe["id"]}}'>{{each_recipe["name"]}}</a></td>
     <td style="color: black;"><img src="{{each_recipe['image_url']}}"></td>
   </tr>
-  
+
   {% endfor %}
   {% else %}
   <h1 style= text-align:center; > Add items to your fridge to see recipes </h1>
