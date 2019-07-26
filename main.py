@@ -167,15 +167,7 @@ class DeleteGrocery(webapp2.RequestHandler):
         # the list of dogs.
         self.redirect('/shopping_list')
 
-class AddGrocery(webapp2.RequestHandler):
-    def post(self):
-        to_add = self.request.get('to_add', allow_multiple=True)
-        for entry in to_add:
-            key = ndb.Key(urlsafe=entry)
-            key.delete()
 
-
-        self.redirect('/shopping_list')
 
 class IndividualRecipe(webapp2.RequestHandler):
 
@@ -230,7 +222,7 @@ app = webapp2.WSGIApplication([
     ('/shopping_list', ShoppingListPage),
     ('/delete_food', DeleteFood),
     ('/delete_grocery', DeleteGrocery),
-    ('/add_to_fridge', AddGrocery),
+
     ('/individual_recipe_page', IndividualRecipe),
     ('/test', TestPage)
 ], debug=True)
