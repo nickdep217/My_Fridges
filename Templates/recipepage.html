@@ -44,6 +44,11 @@
   <tr>
     <td style="font-family: 'Amatic SC', cursive; color: black; font-size:32px;"><a href='/individual_recipe_page?id={{each_recipe["id"]}}'>{{each_recipe["name"]}}</a></td>
     <td style="color: black;"><img src="{{each_recipe['image_url']}}"></td>
+    <td>
+      Items Needed: <br>
+      {% for x in each_recipe["ingredients needed"]%}
+      {{x}}<br>{% endfor %}</td>
+
   </tr>
 
   {% endfor %}

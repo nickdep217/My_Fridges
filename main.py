@@ -129,9 +129,13 @@ class RecipePage(webapp2.RequestHandler):
             food_list.append(food_items[x].name)
         #print food_list
         #["apples","flour","sugar"]
+        #recipes_list = api_functions.search_recipes_new(food_list)
         recipes_list = api_functions.search_recipes(food_list)
         if recipes_list:
             recipes_list = [api_functions.get_recipes(x) for x in recipes_list]
+        for recipe in recipes_list:
+            recipe["ingredients needed"]=[x for x in recipe["ingredients"] if x not in food_list]
+            recipe["ingredients used"]=[x for x in recipe["ingredients"] if x in food_list]
         data = {
           'user': user,
           'login_url': users.create_login_url('/'),
