@@ -65,9 +65,8 @@ class FridgePage(webapp2.RequestHandler):
           'user': user,
           'login_url': users.create_login_url('/'),
           'logout_url': users.create_logout_url(self.request.uri),
-          'food': food_items#queries food in database that is for current user
-            # 'fruits': Fruit.query(Fruit.user==user,ancestor=root_parent()).fetch(),
-            # 'pantries': Pantry.query(Pantry.user==user,ancestor=root_parent()).fetch(),
+          'food': food_items,
+
         }
 
 
@@ -78,9 +77,9 @@ class FridgePage(webapp2.RequestHandler):
 
     def post(self):
         each_food = Food(parent=root_parent())
+
         each_food.name = self.request.get('food_name')
         each_food.user = users.get_current_user()
-        print str(each_food.name)
 
 
         each_food.put()
